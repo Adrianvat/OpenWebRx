@@ -204,6 +204,9 @@ class OpenWebRxReceiverClient(OpenWebRxClient, SdrSourceEventClient):
                         profile = message["params"]["profile"].split("|")
                         self.setSdr(profile[0])
                         self.sdr.activateProfile(profile[1])
+                        f = open("sdrlog.txt", "a")
+                        f.write(message)
+                        f.close()
                 elif message["type"] == "connectionproperties":
                     if "params" in message:
                         self.connectionProperties = message["params"]
